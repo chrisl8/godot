@@ -1458,7 +1458,8 @@ void CSGBrushOperation::update_faces(const CSGBrush &p_brush_a, const int p_face
 	// Ensure B has points either side of or in the plane of A.
 	int over_count = 0, under_count = 0;
 	Plane plane_a(vertices_a[0], vertices_a[1], vertices_a[2]);
-	ERR_FAIL_COND_MSG(plane_a.normal == Vector3(), "Couldn't form plane from Brush A face.");
+	ERR_FAIL_COND_MSG(plane_a.normal == Vector3(), vformat("%f %f %f", plane_a.normal.x, plane_a.normal.y, plane_a.normal.z));
+    WARN_PRINT(vformat("%f %f %f", plane_a.normal.x, plane_a.normal.y, plane_a.normal.z));
 
 	for (int i = 0; i < 3; i++) {
 		if (plane_a.has_point(vertices_b[i])) {
